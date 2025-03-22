@@ -1,16 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import CharactersTable from "./CharactersTable";
+import { characterMock } from "../../../mocks/characterMock";
 
-describe("CharactersTable", () => {
-  it("should render table headers correctly", () => {
-    render(<CharactersTable />);
+it("should render a character row with correct data", () => {
+  render(<CharactersTable characters={[characterMock]} />);
 
-    expect(screen.getByText(/Name/i)).toBeInTheDocument();
-    expect(screen.getByText(/Gender/i)).toBeInTheDocument();
-    expect(screen.getByText(/Status/i)).toBeInTheDocument();
-    expect(screen.getByText(/Species/i)).toBeInTheDocument();
-    expect(screen.getByText(/Last Known Location/i)).toBeInTheDocument();
-    expect(screen.getByText(/Episodes/i)).toBeInTheDocument();
-  });
+  expect(screen.getByText(/Rick Sanchez/i)).toBeInTheDocument();
+  expect(screen.getByText(/Male/i)).toBeInTheDocument();
+  expect(screen.getByText(/Alive/i)).toBeInTheDocument();
+  expect(screen.getByText(/Human/i)).toBeInTheDocument();
+  expect(
+    screen.getByText(/Earth \(Replacement Dimension\)/i)
+  ).toBeInTheDocument();
+  expect(screen.getByText("51")).toBeInTheDocument();
 });

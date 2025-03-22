@@ -1,4 +1,10 @@
-const CharactersTable = () => {
+import { Character } from "../../../domain/models/Character";
+
+type CharactersTableProps = {
+  characters: Character[];
+};
+
+const CharactersTable = ({ characters }: CharactersTableProps) => {
   return (
     <table>
       <thead>
@@ -11,7 +17,18 @@ const CharactersTable = () => {
           <th>Episodes</th>
         </tr>
       </thead>
-      <tbody />
+      <tbody>
+        {characters.map((char) => (
+          <tr key={char.id}>
+            <td>{char.name}</td>
+            <td>{char.gender}</td>
+            <td>{char.status}</td>
+            <td>{char.species}</td>
+            <td>{char.location.name}</td>
+            <td>{char.episode.length}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };
