@@ -4,7 +4,7 @@ import CharactersTable from "./CharactersTable";
 import { characterMock } from "../../../mocks/characterMock";
 
 it("should render a character row with correct data", () => {
-  render(<CharactersTable characters={[characterMock]} />);
+  render(<CharactersTable characters={[characterMock[0]]} />);
 
   expect(screen.getByText(/Rick Sanchez/i)).toBeInTheDocument();
   expect(screen.getByText(/Male/i)).toBeInTheDocument();
@@ -13,13 +13,13 @@ it("should render a character row with correct data", () => {
   expect(
     screen.getByText(/Earth \(Replacement Dimension\)/i)
   ).toBeInTheDocument();
-  expect(screen.getByText("51")).toBeInTheDocument();
+  expect(screen.getByText("1")).toBeInTheDocument();
 });
 
 it("should render multiple character rows when receiving an array", () => {
   const characters = [
-    { ...characterMock, id: 1, name: "Rick" },
-    { ...characterMock, id: 2, name: "Morty" },
+    { ...characterMock[0], id: 1, name: "Rick" },
+    { ...characterMock[0], id: 2, name: "Morty" },
   ];
 
   render(<CharactersTable characters={characters} />);
