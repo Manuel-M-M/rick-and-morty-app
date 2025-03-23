@@ -1,4 +1,5 @@
 import { Character } from "../../../domain/models/Character";
+import { Table, Thead, Th, Td, Tr } from "./CharactersTable.styles";
 
 type CharactersTableProps = {
   characters: Character[];
@@ -6,30 +7,30 @@ type CharactersTableProps = {
 
 const CharactersTable = ({ characters }: CharactersTableProps) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Status</th>
-          <th>Species</th>
-          <th>Last Known Location</th>
-          <th>Episodes</th>
-        </tr>
-      </thead>
+    <Table>
+      <Thead>
+        <Tr>
+          <Th>Name</Th>
+          <Th>Gender</Th>
+          <Th>Status</Th>
+          <Th>Species</Th>
+          <Th>Last Known Location</Th>
+          <Th>Episodes</Th>
+        </Tr>
+      </Thead>
       <tbody>
         {characters.map((char) => (
-          <tr key={char.id}>
-            <td>{char.name}</td>
-            <td>{char.gender}</td>
-            <td>{char.status}</td>
-            <td>{char.species}</td>
-            <td>{char.location.name}</td>
-            <td>{char.episode.length}</td>
-          </tr>
+          <Tr key={char.id}>
+            <Td>{char.name}</Td>
+            <Td>{char.gender}</Td>
+            <Td>{char.status}</Td>
+            <Td>{char.species}</Td>
+            <Td>{char.location.name}</Td>
+            <Td>{char.episode.length}</Td>
+          </Tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 };
 
