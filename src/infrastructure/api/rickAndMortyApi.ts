@@ -3,32 +3,31 @@ import { RickAndMortyApiCharacter } from "./types";
 
 const BASE_URL = "https://rickandmortyapi.com/api";
 
-export const fetchCharacters = async (): Promise<Character[]> => {
-  const response = await fetch(`${BASE_URL}/character`);
-  const data = await response.json();
-
-  return (data.results as RickAndMortyApiCharacter[]).map((item) => ({
-    id: item.id,
-    name: item.name,
-    gender: item.gender,
-    status: item.status,
-    species: item.species,
-    location: { name: item.location.name },
-    episode: item.episode.map((url) => ({
-      id: parseInt(url.split("/").pop() || "0"),
-    })),
-  }));
+export type FetchCharactersResult = {
+  characters: Character[];
+  totalPages: number;
 };
 
-export const fetchCharactersByName = async (
-  name: string
-): Promise<Character[]> => {
-  const url = `${BASE_URL}/character?name=${encodeURIComponent(name)}`;
+export const fetchCharacters = async (
+  name = "",
+  page = 1
+): Promise<FetchCharactersResult> => {
+  const url = `${BASE_URL}/character?name=${encodeURIComponent(
+    name
+  )}&page=${page}`;
   const response = await fetch(url);
-  if (!response.ok) return [];
+
+  if (!response.ok) {
+    return { characters: [], totalPages: 0 };
+  }
 
   const data = await response.json();
-  return (data.results as RickAndMortyApiCharacter[]).map(mapToCharacter);
+  const characters = (data.results as RickAndMortyApiCharacter[]).map(
+    mapToCharacter
+  );
+  const totalPages = data.info?.pages || 1;
+
+  return { characters, totalPages };
 };
 
 const mapToCharacter = (item: RickAndMortyApiCharacter): Character => ({
@@ -39,6 +38,6 @@ const mapToCharacter = (item: RickAndMortyApiCharacter): Character => ({
   species: item.species,
   location: { name: item.location.name },
   episode: item.episode.map((url) => ({
-    id: parseInt(url.split("/").pop() || "0"),
+    id: parseInt(url.split("/").pop() || "0", 10),
   })),
 });
