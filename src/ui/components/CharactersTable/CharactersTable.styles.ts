@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Table = styled.table`
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   margin: ${({ theme }) => theme.spacing(4)} auto;
   font-family: ${({ theme }) => theme.font.family};
@@ -10,6 +11,7 @@ export const Table = styled.table`
   box-shadow: ${({ theme }) => theme.shadow.glow};
   border-radius: ${({ theme }) => theme.radius.lg};
   overflow: hidden;
+  overflow-x: auto;
 `;
 
 export const Thead = styled.thead`
