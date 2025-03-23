@@ -1,13 +1,15 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import CharactersListPage from "./ui/pages/CharactersListPage";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./ui/styles/theme";
+import App from "./App";
+import { GlobalStyle } from "./ui/styles/GlobalStyle";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <CharactersListPage />
+      <GlobalStyle />
+      <App />
     </ThemeProvider>
   </StrictMode>
 );
