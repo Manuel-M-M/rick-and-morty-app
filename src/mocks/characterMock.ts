@@ -1,11 +1,13 @@
-export const characterMock = {
-  id: 1,
-  name: "Rick Sanchez",
-  gender: "Male",
-  status: "Alive",
-  species: "Human",
-  location: {
-    name: "Earth (Replacement Dimension)",
+import { Character } from "../domain/models/Character";
+
+export const characterMock: Character[] = [
+  {
+    id: 1,
+    name: "Rick Sanchez",
+    gender: "Male",
+    status: "Alive",
+    species: "Human",
+    location: { name: "Earth (Replacement Dimension)" },
+    episode: [{ id: 1 }],
   },
-  episode: Array.from({ length: 51 }, (_, i) => ({ id: i + 1 })),
-};
+];
