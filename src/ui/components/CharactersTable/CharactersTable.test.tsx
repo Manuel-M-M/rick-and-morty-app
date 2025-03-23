@@ -15,3 +15,22 @@ it("should render a character row with correct data", () => {
   ).toBeInTheDocument();
   expect(screen.getByText("51")).toBeInTheDocument();
 });
+
+it("should render multiple character rows when receiving an array", () => {
+  const characters = [
+    { ...characterMock, id: 1, name: "Rick" },
+    { ...characterMock, id: 2, name: "Morty" },
+  ];
+
+  render(<CharactersTable characters={characters} />);
+
+  expect(screen.getByText("Rick")).toBeInTheDocument();
+  expect(screen.getByText("Morty")).toBeInTheDocument();
+});
+
+it("should render only headers if character list is empty", () => {
+  render(<CharactersTable characters={[]} />);
+
+  const rows = screen.queryAllByRole("row");
+  expect(rows).toHaveLength(1);
+});
