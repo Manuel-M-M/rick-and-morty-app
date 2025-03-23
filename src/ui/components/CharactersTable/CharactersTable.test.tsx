@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../../../test-utils/renderWithTheme";
 import "@testing-library/jest-dom";
 import CharactersTable from "./CharactersTable";
 import { characterMock } from "../../../mocks/characterMock";
